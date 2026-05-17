@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>G05 FYP Portfolio | Loshitha Udana</title>
+
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      margin:0;
+      padding:0;
+      background:#0b0f15;
+      color:#e2e8f0;
+      font-family:'Space Grotesk',sans-serif;
+      overflow-x:hidden;
+    }
+
+    /* =========================
+       BACKGROUND GRID EFFECT
+    ========================== */
+
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background-image:
+        linear-gradient(rgba(56,189,248,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56,189,248,0.08) 1px, transparent 1px);
+      background-size:40px 40px;
+      z-index:-2;
+    }
+
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,0.12), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(14,165,233,0.10), transparent 35%);
+      z-index:-1;
+    }
+
+    /* =========================
+       CONTAINER
+    ========================== */
+
+    .container{
+      max-width:1250px;
+      margin:0 auto;
+      padding:0 30px;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================== */
+
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:1000;
+
+      backdrop-filter:blur(14px);
+      background:rgba(11,15,21,0.85);
+
+      border-bottom:1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav{
+      height:78px;
+
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+
+    .brand{
+      font-size:1.15rem;
+      font-weight:700;
+      color:#ffffff;
+      text-decoration:none;
+      letter-spacing:0.5px;
+    }
+
+    .nav-right{
+      display:flex;
+      align-items:center;
+      gap:24px;
+    }
+
+    .nav-right ul{
+      list-style:none;
+      display:flex;
+      gap:22px;
+      margin:0;
+      padding:0;
+    }
+
+    .nav-right ul li a{
+      text-decoration:none;
+      color:#94a3b8;
+      font-weight:500;
+      transition:0.25s ease;
+    }
+
+    .nav-right ul li a:hover{
+      color:#ffffff;
+    }
+
+    .avatar{
+      width:46px;
+      height:46px;
+      border-radius:50%;
+      object-fit:cover;
+      border:2px solid #38bdf8;
+      box-shadow:0 0 15px rgba(56,189,248,0.45);
+    }
+
+    .tag{
+      background:linear-gradient(135deg,#38bdf8,#14b8a6);
+      color:#081018;
+      padding:8px 16px;
+      border-radius:999px;
+      font-size:0.8rem;
+      font-weight:700;
+    }
+
+    /* =========================
+       HERO SECTION
+    ========================== */
+
+    .hero{
+      min-height:90vh;
+
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+
+      gap:80px;
+      padding:80px 0;
+    }
+
+    .hero-text{
+      flex:1;
+      max-width:720px;
+    }
+
+    h1{
+      font-family:'DM Serif Display',serif;
+      font-size:5.3rem;
+      line-height:1.05;
+      margin:0 0 24px 0;
+      color:#ffffff;
+    }
+
+    .subtitle{
+      font-size:1.3rem;
+      line-height:1.8;
+      color:#cbd5e1;
+      margin-bottom:16px;
+    }
+
+    .registration{
+      font-size:1.05rem;
+      color:#94a3b8;
+      margin-bottom:30px;
+    }
+
+    .meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-bottom:28px;
+    }
+
+    .pill{
+      padding:10px 18px;
+      border-radius:999px;
+
+      background:rgba(255,255,255,0.04);
+
+      border:1px solid rgba(255,255,255,0.08);
+
+      color:#dbeafe;
+      font-size:0.95rem;
+      font-weight:500;
+
+      backdrop-filter:blur(6px);
+    }
+
+    .hero-description{
+      margin-top:24px;
+      line-height:1.9;
+      color:#cbd5e1;
+      font-size:1.05rem;
+    }
+
+    .button{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+
+      margin-top:30px;
+
+      padding:16px 34px;
+
+      background:linear-gradient(135deg,#38bdf8,#14b8a6);
+
+      color:#071019;
+      text-decoration:none;
+      border-radius:14px;
+
+      font-weight:700;
+      font-size:1rem;
+
+      transition:0.3s ease;
+
+      box-shadow:
+        0 0 25px rgba(56,189,248,0.35),
+        0 12px 30px rgba(0,0,0,0.35);
+    }
+
+    .button:hover{
+      transform:translateY(-3px) scale(1.02);
+      box-shadow:
+        0 0 35px rgba(56,189,248,0.55),
+        0 16px 40px rgba(0,0,0,0.45);
+    }
+
+    /* =========================
+       LARGE PROFILE IMAGE
+    ========================== */
+
+    .hero-image{
+      flex-shrink:0;
+      position:relative;
+    }
+
+    .hero-image::before{
+      content:"";
+      position:absolute;
+      width:120%;
+      height:120%;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+
+      background:
+        radial-gradient(circle, rgba(56,189,248,0.35), transparent 70%);
+
+      filter:blur(40px);
+      z-index:0;
+    }
+
+    .profile-large{
+      position:relative;
+      z-index:1;
+
+      width:500px;       /* BIGGER WIDTH */
+      height:650px;      /* BIGGER HEIGHT */
+
+      object-fit:cover;
+
+      border-radius:28px;
+
+      border:3px solid rgba(56,189,248,0.35);
+
+      box-shadow:
+        0 0 40px rgba(56,189,248,0.20),
+        0 30px 60px rgba(0,0,0,0.55);
+
+      transition:0.4s ease;
+    }
+
+    .profile-large:hover{
+      transform:scale(1.02);
+    }
+
+    /* =========================
+       SECTIONS
+    ========================== */
+
+    .section{
+      padding:90px 0 40px 0;
+    }
+
+    h2{
+      font-size:2.5rem;
+      margin-bottom:26px;
+      color:#ffffff;
+    }
+
+    .grid{
+      display:grid;
+      gap:24px;
+      margin-top:30px;
+    }
+
+    .grid-2{
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    }
+
+    .grid-3{
+      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    }
+
+    .card{
+      background:rgba(18,24,33,0.82);
+
+      border:1px solid rgba(255,255,255,0.06);
+
+      border-radius:22px;
+
+      padding:28px;
+
+      backdrop-filter:blur(12px);
+
+      transition:0.3s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(56,189,248,0.40);
+
+      box-shadow:
+        0 12px 35px rgba(0,0,0,0.35),
+        0 0 18px rgba(56,189,248,0.08);
+    }
+
+    .card h3{
+      margin-top:0;
+      color:#ffffff;
+      font-size:1.3rem;
+    }
+
+    .card p{
+      line-height:1.8;
+      color:#cbd5e1;
+    }
+
+    /* =========================
+       TABLE
+    ========================== */
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+    }
+
+    th{
+      text-align:left;
+      padding:16px;
+      background:#111827;
+      color:#ffffff;
+    }
+
+    td{
+      padding:16px;
+      color:#cbd5e1;
+      border-bottom:1px solid rgba(255,255,255,0.05);
+    }
+
+    tr:hover{
+      background:rgba(255,255,255,0.02);
+    }
+
+    /* =========================
+       WEEKLY LINKS
+    ========================== */
+
+    .link-grid a{
+      background:rgba(18,24,33,0.82);
+
+      border:1px solid rgba(255,255,255,0.06);
+
+      padding:22px;
+
+      border-radius:18px;
+
+      text-align:center;
+
+      text-decoration:none;
+
+      color:#38bdf8;
+
+      font-weight:700;
+
+      transition:0.3s ease;
+    }
+
+    .link-grid a:hover{
+      background:#16202d;
+      color:#ffffff;
+
+      transform:translateY(-4px);
+
+      border-color:#38bdf8;
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    .footer{
+      margin-top:80px;
+      border-top:1px solid rgba(255,255,255,0.05);
+
+      padding:35px 0;
+
+      text-align:center;
+
+      color:#64748b;
+      font-size:0.95rem;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+
+    @media (max-width:1100px){
+
+      .hero{
+        gap:50px;
+      }
+
+      .profile-large{
+        width:420px;
+        height:560px;
+      }
+
+      h1{
+        font-size:4.3rem;
+      }
+    }
+
+    @media (max-width:900px){
+
+      .hero{
+        flex-direction:column-reverse;
+        text-align:center;
+      }
+
+      .meta{
+        justify-content:center;
+      }
+
+      .profile-large{
+        width:360px;
+        height:480px;
+      }
+
+      h1{
+        font-size:3.5rem;
+      }
+    }
+
+    @media (max-width:600px){
+
+      .container{
+        padding:0 18px;
+      }
+
+      .nav{
+        flex-direction:column;
+        height:auto;
+        padding:16px 0;
+        gap:14px;
+      }
+
+      .nav-right{
+        flex-wrap:wrap;
+        justify-content:center;
+      }
+
+      .profile-large{
+        width:290px;
+        height:390px;
+      }
+
+      h1{
+        font-size:2.8rem;
+      }
+
+      h2{
+        font-size:2rem;
+      }
+
+      .button{
+        width:100%;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVBAR
+  ========================== -->
+
+  <div class="topbar">
+    <div class="container nav">
+
+      <a href="#top" class="brand">
+        G05 Deep-Vision Fusion
+      </a>
+
+      <div class="nav-right">
+
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#project">Project</a></li>
+          <li><a href="#weekly">Weekly</a></li>
+        </ul>
+
+        <img class="avatar" src="figures/profile.jpg" alt="Loshitha Udana">
+
+        <span class="tag">FYP 2026</span>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================
+       MAIN CONTENT
+  ========================== -->
+
+  <main id="top" class="container">
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <div class="hero-text">
+
+        <h1>Loshitha Udana</h1>
+
+        <p class="subtitle">
+          Undergraduate Electrical and Electronic Engineer,
+          University of Peradeniya.
+        </p>
+
+        <p class="registration">
+          <strong>Registration:</strong> E/21/047
+        </p>
+
+        <div class="meta">
+          <div class="pill">Group 05</div>
+          <div class="pill">PCB Anomaly Detection</div>
+          <div class="pill">Semantic-Aware Deep-Vision Fusion</div>
+        </div>
+
+        <p>
+          <strong>Supervisor:</strong>
+          Prof. Maheshi Dissanayake
+        </p>
+
+        <p class="hero-description">
+          <strong>
+            Semantic-Aware Deep-Vision Fusion:
+            Task-Oriented Feature Extraction for PCB Anomaly Detection
+          </strong>
+
+          <br><br>
+
+          Focused on intelligent industrial surface anomaly detection
+          including open circuits, shorts, and mouse-bite defects
+          in printed circuit boards using advanced deep-learning
+          and semantic-aware feature extraction techniques.
+        </p>
+
+        <a class="button" href="weekly/week-01.html">
+          Start Weekly Log
+        </a>
+
+      </div>
+
+      <!-- BIG PROFILE IMAGE -->
+
+      <div class="hero-image">
+
+        <img
+          class="profile-large"
+          src="figures/profile.jpg"
+          alt="Loshitha Udana"
+        >
+
+      </div>
+
+    </section>
+
+    <!-- ABOUT -->
+
+    <section id="about" class="section">
+
+      <h2>About Me</h2>
+
+      <div class="grid grid-2">
+
+        <div class="card">
+          <h3>Background</h3>
+
+          <p>
+            I am an undergraduate student in Electrical and
+            Electronic Engineering at the University of Peradeniya.
+            My interests include intelligent sensing,
+            industrial automation, embedded systems,
+            computer vision, and machine learning.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Project Role</h3>
+
+          <p>
+            Focused on deep-learning model development,
+            dataset preparation, feature extraction,
+            evaluation workflow, and weekly technical documentation
+            for evidence-based project assessment.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- PROJECT -->
+
+    <section id="project" class="section">
+
+      <h2>Project Snapshot</h2>
+
+      <div class="grid grid-3">
+
+        <div class="card">
+          <h3>Objective</h3>
+
+          <p>
+            Detect PCB defects including open circuits,
+            shorts, and mouse-bites using semantic-aware
+            computer vision methods.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Approach</h3>
+
+          <p>
+            Task-oriented feature extraction with
+            attention-based fusion of spatial and
+            contextual visual information.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Outcomes</h3>
+
+          <p>
+            Build a reliable intelligent PCB inspection
+            pipeline with interpretable defect localization
+            and improved classification accuracy.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- EXECUTION PLAN -->
+
+    <section class="section">
+
+      <h2>Execution Plan</h2>
+
+      <div class="card" style="overflow:auto">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>Weeks</th>
+              <th>Task Description</th>
+              <th>Project Deliverables</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr>
+              <td>1 - 3</td>
+              <td>Literature review and initial dataset preparation</td>
+              <td>Prepared datasets and proposed baseline models</td>
+            </tr>
+
+            <tr>
+              <td>4 - 5</td>
+              <td>Evaluate and compare classifiers</td>
+              <td>Selected primary model architecture</td>
+            </tr>
+
+            <tr>
+              <td>6 - 7</td>
+              <td>Model training and performance optimization</td>
+              <td>Optimized trained classifier</td>
+            </tr>
+
+            <tr>
+              <td colspan="3" style="text-align:center;font-weight:700;background:#111827">
+                Mid-Semester Review
+              </td>
+            </tr>
+
+            <tr>
+              <td>9 - 10</td>
+              <td>Image masking and segmentation pipeline</td>
+              <td>Segmentation-ready annotated dataset</td>
+            </tr>
+
+            <tr>
+              <td>11 - 14</td>
+              <td>Hardware integration and final evaluation</td>
+              <td>Functional inspection pipeline and final report</td>
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </section>
+
+    <!-- WEEKLY -->
+
+    <section id="weekly" class="section">
+
+      <h2>Weekly Progress</h2>
+
+      <div class="grid grid-3 link-grid">
+
+        <a href="weekly/week-01.html">Week 01</a>
+        <a href="weekly/week-02.html">Week 02</a>
+        <a href="weekly/week-03.html">Week 03</a>
+        <a href="weekly/week-04.html">Week 04</a>
+        <a href="weekly/week-05.html">Week 05</a>
+        <a href="weekly/week-06.html">Week 06</a>
+        <a href="weekly/week-07.html">Week 07</a>
+        <a href="weekly/week-08.html">Week 08</a>
+        <a href="weekly/week-09.html">Week 09</a>
+        <a href="weekly/week-10.html">Week 10</a>
+        <a href="weekly/week-11.html">Week 11</a>
+        <a href="weekly/week-12.html">Week 12</a>
+        <a href="weekly/week-13.html">Week 13</a>
+        <a href="weekly/week-14.html">Week 14</a>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+
+  <footer class="footer">
+
+    <div class="container">
+      Last updated: 2026-05-17 |
+      Contact: 0752637771 |
+      Email: e21047@eng.pdn.ac.lk
+    </div>
+
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+
+</body>
+</html>

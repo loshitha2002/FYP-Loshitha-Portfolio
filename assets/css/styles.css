@@ -1,0 +1,157 @@
+:root{
+  --bg:#0b0f14;
+  --ink:#e7edf2;
+  --muted:#a8b3bf;
+  --accent:#2bd1c5;
+  --accent-2:#f2b13c;
+  --card:#121821;
+  --line:rgba(231,237,242,0.14);
+  --shadow:0 18px 40px rgba(0,0,0,0.35);
+  --pcb:#0f2a2a;
+  --copper:#c97c2c;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:"Space Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(900px 680px at 0% 0%,rgba(43,209,197,0.18),transparent 60%),
+    radial-gradient(800px 600px at 90% -10%,rgba(242,177,60,0.18),transparent 55%),
+    linear-gradient(180deg,#0b0f14 0%,#0f141c 50%,#0c1118 100%);
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:
+    repeating-linear-gradient(0deg,rgba(43,209,197,0.08) 0 1px,transparent 1px 34px),
+    repeating-linear-gradient(90deg,rgba(43,209,197,0.08) 0 1px,transparent 1px 34px),
+    linear-gradient(140deg,rgba(201,124,44,0.12),transparent 45%);
+  pointer-events:none;
+  z-index:-1;
+}
+img{max-width:100%;display:block}
+.container{max-width:1120px;margin:0 auto;padding:0 24px}
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:20;
+  backdrop-filter:blur(12px);
+  background:rgba(11,15,20,0.8);
+  border-bottom:1px solid var(--line);
+}
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 0;
+}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav a{color:var(--ink);text-decoration:none;font-weight:600}
+.nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+.nav .avatar{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  object-fit:cover;
+  object-position:center top;
+  border:2px solid rgba(43,209,197,0.5);
+  box-shadow:0 8px 18px rgba(0,0,0,0.35);
+}
+.nav .tag{
+  background:linear-gradient(135deg,var(--accent),#18a9a0);
+  color:#081012;
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:0.85rem;
+}
+.hero{
+  padding:72px 0 36px;
+}
+.hero h1{
+  font-family:"DM Serif Display",serif;
+  font-size:3rem;
+  margin:0 0 10px;
+}
+.hero p{color:var(--muted);max-width:700px}
+.hero .meta{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}
+.hero .pill{
+  border:1px solid var(--line);
+  padding:8px 12px;
+  border-radius:999px;
+  background:rgba(18,24,33,0.9);
+}
+.grid{display:grid;gap:18px}
+.grid-2{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.section{padding:32px 0}
+.section h2{margin:0 0 12px;font-size:1.7rem}
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:18px;
+  box-shadow:var(--shadow);
+}
+.card h3{margin:0 0 10px}
+.badge{display:inline-block;margin-right:8px;padding:4px 8px;border-radius:8px;background:rgba(43,209,197,0.12);color:var(--ink)}
+.timeline{border-left:2px solid var(--line);padding-left:16px}
+.timeline-item{margin-bottom:16px}
+.timeline-item h4{margin:0}
+.figure{border-radius:12px;box-shadow:var(--shadow)}
+.figure-caption{text-align:center;color:var(--muted);margin-top:8px}
+.profile-photo{
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  border-radius:16px;
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+}
+.link-grid a{
+  display:block;
+  padding:14px 16px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:var(--card);
+  text-decoration:none;
+  color:var(--ink);
+  transition:transform 0.2s ease,box-shadow 0.2s ease,border-color 0.2s ease;
+}
+.link-grid a:hover{
+  transform:translateY(-4px);
+  border-color:rgba(43,209,197,0.45);
+  box-shadow:0 16px 30px rgba(0,0,0,0.4);
+}
+.footer{
+  padding:24px 0 40px;
+  border-top:1px solid var(--line);
+  color:var(--muted);
+  font-size:0.95rem;
+}
+.button{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 18px;
+  border-radius:999px;
+  border:1px solid var(--accent);
+  color:#081012;
+  background:linear-gradient(135deg,var(--accent),#18a9a0);
+  text-decoration:none;
+  font-weight:600;
+  box-shadow:0 12px 26px rgba(43,209,197,0.2);
+}
+.reveal{opacity:0;transform:translateY(16px);transition:all 0.6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+@media (max-width:720px){
+  .hero h1{font-size:2.2rem}
+  .nav ul{display:none}
+  .nav .avatar{width:38px;height:38px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
+}

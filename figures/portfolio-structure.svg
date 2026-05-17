@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-label="Portfolio folder structure diagram">
+  <defs>
+    <style>
+      .title{font:600 28px "Space Grotesk",sans-serif;fill:#1f1f1f}
+      .box{fill:#ffffff;stroke:#333;stroke-width:2;rx:16;ry:16}
+      .head{font:600 18px "Space Grotesk",sans-serif;fill:#1f1f1f}
+      .text{font:400 16px "Space Grotesk",sans-serif;fill:#444}
+      .center{font:600 20px "Space Grotesk",sans-serif;fill:#1f1f1f}
+    </style>
+  </defs>
+
+  <rect x="0" y="0" width="1200" height="700" fill="#f7f5f0"/>
+  <text x="60" y="70" class="title">Portfolio Folder Structure</text>
+
+  <rect x="520" y="110" width="160" height="60" class="box"/>
+  <text x="600" y="148" text-anchor="middle" class="center">G-XX-2024</text>
+
+  <rect x="120" y="180" width="260" height="150" class="box"/>
+  <text x="150" y="210" class="head">Portfolios</text>
+  <text x="150" y="240" class="text">- Links to portfolios</text>
+  <text x="150" y="265" class="text">  in a word file</text>
+
+  <rect x="120" y="380" width="260" height="140" class="box"/>
+  <text x="150" y="410" class="head">Shared items</text>
+  <text x="150" y="440" class="text">- Anything to be shared</text>
+
+  <rect x="470" y="420" width="260" height="160" class="box"/>
+  <text x="500" y="450" class="head">Documentation</text>
+  <text x="500" y="480" class="text">- Project proposal</text>
+  <text x="500" y="505" class="text">- Reports</text>
+  <text x="500" y="530" class="text">- Datasheets</text>
+  <text x="500" y="555" class="text">- Application notes</text>
+
+  <rect x="820" y="180" width="300" height="170" class="box"/>
+  <text x="850" y="210" class="head">Software</text>
+  <text x="850" y="240" class="text">You may create subfolders:</text>
+  <text x="850" y="265" class="text">- Matlab</text>
+  <text x="850" y="290" class="text">- PSCAD</text>
+  <text x="850" y="315" class="text">- AWRMO</text>
+  <text x="850" y="340" class="text">- C++</text>
+
+  <rect x="820" y="380" width="300" height="170" class="box"/>
+  <text x="850" y="410" class="head">Hardware</text>
+  <text x="850" y="440" class="text">Suggested subfolders:</text>
+  <text x="850" y="465" class="text">- Schematics</text>
+  <text x="850" y="490" class="text">- Layouts</text>
+  <text x="850" y="515" class="text">- Gerber files</text>
+  <text x="850" y="540" class="text">- CAD drawings</text>
+
+  <line x1="600" y1="170" x2="250" y2="180" stroke="#333" stroke-width="2"/>
+  <line x1="600" y1="170" x2="250" y2="380" stroke="#333" stroke-width="2"/>
+  <line x1="600" y1="170" x2="600" y2="420" stroke="#333" stroke-width="2"/>
+  <line x1="600" y1="170" x2="970" y2="180" stroke="#333" stroke-width="2"/>
+  <line x1="600" y1="170" x2="970" y2="380" stroke="#333" stroke-width="2"/>
+</svg>
