@@ -24,7 +24,21 @@
   <main class="container">
     <section class="hero reveal">
       <h1>Week 08</h1>
-      <p>Date range: [YYYY-MM-DD to YYYY-MM-DD]</p>
+      <p>Date range: [2026-06-15 to 2026-06-19]</p>
+    </section>
+
+    <!-- NEW: Weekly Progress Section -->
+    <section class="section reveal">
+      <h2>Weekly Progress</h2>
+      <ul>
+        <li>Implemented a robust <strong>RGB-to-Binary preprocessing pipeline</strong> to convert raw RGB prototype images into high-fidelity black-and-white (binary) masks to DeepPCB standards.</li>
+        <li>Developed a three-stage image isolation framework consisting of <strong>Illumination Correction in HSV Space</strong> (utilizing Bilateral Filtering and CLAHE), <strong>2D Adaptive Thresholding</strong>, and <strong>Morphological Refinement</strong> (Closing and Opening operations).</li>
+        <li>Optimized pipeline parameter selections to eliminate localized glare, noise, and background textures, ensuring accurate geometric trace profiles for subsequent VGG16 Deep-Shallow Feature Fusion processing.</li>
+        <li>Linked the complete technical engineering review and the dataset of binary outputs: 
+          <a href="pcb_preprocessing_report.pdf" target="_blank">View Engineering Report (PDF)</a> and 
+          <a href="converted_images.zip" download>Download Converted Images (ZIP)</a>.
+        </li>
+      </ul>
     </section>
 
     <section class="section reveal">
