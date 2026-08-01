@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- TOP NAVIGATION BAR -->
   <div class="topbar">
     <div class="container nav">
       <a href="../index.html">G05 Deep-Vision Fusion</a>
@@ -22,18 +23,97 @@
   </div>
 
   <main class="container">
+    <!-- HERO SECTION -->
     <section class="hero reveal">
-      <h1>Week 11</h1>
-      <p>Date range: [YYYY-MM-DD to YYYY-MM-DD]</p>
+      <h1>Week 11: Quantization-Aware Training & INT8 Model Deployment</h1>
+      <p>Date range: [2026-10-19 to 2026-10-25]</p>
+      <p class="lead">
+        This week focused on implementing Quantization-Aware Training (QAT) using PyTorch's <code>qnnpack</code> engine to optimize our dual-branch PCB defect detection model for lightweight edge deployment on the Raspberry Pi 5 CPU.
+      </p>
     </section>
 
+    <!-- WEEKLY HIGHLIGHTS & KEY ACCOMPLISHMENTS -->
+    <section class="section reveal">
+      <h2>Key Accomplishments</h2>
+      <div class="grid-cards">
+        <div class="card">
+          <h3>⚡ Quantization-Aware Training (QAT)</h3>
+          <p>Integrated <code>QuantStub</code> and <code>DeQuantStub</code> into our model architecture, target-compiled with the ARM-optimized <code>qnnpack</code> backend. Reduced overall footprint by ~75% without accuracy degradation.</p>
+        </div>
+        <div class="card">
+          <h3>🧠 Architecture Verification</h3>
+          <p>Validated feature map aggregation across 5 total feature streams: 4 multi-scale FPN feature maps ($p_2, p_3, p_4, p_5$) fused with 17 handcrafted shallow edge features (Sobel, Laplacian, Sharpen, Local Variance).</p>
+        </div>
+        <div class="card">
+          <h3>🔍 Multi-Scale & Suppression Engine</h3>
+          <p>Deployed a 3-pass sliding window engine ($192\times192$, $256\times256$, $320\times320$) with automated drill-hole suppression (circularity filter $C > 0.68$ + point-in-polygon verification) to eliminate false alarms.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNICAL ARCHITECTURE SUMMARY -->
+    <section class="section reveal">
+      <h2>Technical Highlights & Methodology</h2>
+      <div class="content-box">
+        <ul>
+          <li><strong>Dual-Branch Feature Fusion:</strong> Integrates a deep VGG16-BN backbone with 4 FPN pyramid levels concatenated alongside 32 shallow edge feature channels into a 160-channel prediction head.</li>
+          <li><strong>Optimization Loss Function:</strong> Combines Binary Cross-Entropy (BCE) with Dice Loss to effectively handle severe class imbalance ($<1\%$ foreground defect pixels):
+            <br>
+            <code>Loss = BCE(y, y_pred) + [1 - (2 * Intersection + ε) / (Sum(y) + Sum(y_pred) + ε)]</code>
+          </li>
+          <li><strong>Target Platform:</strong> Converted final INT8 model into TorchScript format (<code>deeppcb_vgg16_fpn_int8.pt</code>) for execution on Raspberry Pi 5 (4-thread ARM multi-processing).</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- GOOGLE COLAB LINKS & RESOURCES -->
+    <section class="section reveal">
+      <h2>Project Resources & Notebooks</h2>
+      <div class="resource-links">
+        <a href="https://colab.research.google.com/" target="_blank" class="btn-link">
+          🚀 Open Google Colab Training & QAT Notebook
+        </a>
+        <a href="https://colab.research.google.com/" target="_blank" class="btn-link secondary-btn">
+          🧪 Open Colab Testing & Inference Notebook
+        </a>
+        <a href="https://www.overleaf.com/" target="_blank" class="btn-link outline-btn">
+          📄 View LaTeX Technical Documentation (Overleaf)
+        </a>
+      </div>
+    </section>
+
+    <!-- INSPECTION RESULTS & GALLERY -->
+    <section class="section reveal">
+      <h2>Experimental Inspection Results</h2>
+      <p>Visual verification of 3-pass multi-scale inspection with INT8 Quantized TorchScript model:</p>
+      
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="../assets/images/week11_original_pcb.jpg" alt="Original Test PCB" onerror="this.src='https://via.placeholder.com/400x300?text=Original+PCB+Image'">
+          <div class="caption">1. Input Raw Grayscale PCB</div>
+        </div>
+        <div class="gallery-item">
+          <img src="../assets/images/week11_int8_heatmap.png" alt="INT8 Heatmap Prediction" onerror="this.src='https://via.placeholder.com/400x300?text=3-Pass+INT8+Heatmap'">
+          <div class="caption">2. 3-Pass Aggregated Heatmap (&tau; = 0.38)</div>
+        </div>
+        <div class="gallery-item">
+          <img src="../assets/images/week11_defect_detection.png" alt="Filtered Defect Detection" onerror="this.src='https://via.placeholder.com/400x300?text=Filtered+Detections'">
+          <div class="caption">3. Final Bounding Boxes & Hole Suppression</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEXT WEEK PLAN -->
     <section class="section reveal">
       <h2>Next Week Plan</h2>
       <ul>
-        <li>Finalize documentation and submission checklist</li>
+        <li>Deploy <code>deeppcb_vgg16_fpn_int8.pt</code> onto Raspberry Pi 5 hardware and perform real-time latency benchmarking (FPS, memory footprint, CPU load).</li>
+        <li>Compare FP32 baseline latency vs. INT8 QAT performance on the Raspberry Pi 5 CPU.</li>
+        <li>Finalize project documentation, supervisor review slides, and complete final submission checklist.</li>
       </ul>
     </section>
   </main>
+
   <script src="../assets/js/main.js"></script>
 </body>
 </html>
