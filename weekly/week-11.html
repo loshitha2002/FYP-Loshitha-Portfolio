@@ -8,6 +8,87 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Custom embedded styling to enhance technical presentation */
+    .tech-box {
+      background: #f8f9fa;
+      border-left: 4px solid #1565c0;
+      padding: 1.2rem;
+      margin: 1.5rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+    .math-card {
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      margin: 1rem 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    }
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .feature-item {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.9em;
+    }
+    .badge-tag {
+      background-color: #e3f2fd;
+      color: #1565c0;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.8em;
+    }
+    .code-container {
+      background: #1e1e1e;
+      color: #d4d4d4;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.85rem;
+      max-height: 400px;
+    }
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin: 1.5rem 0;
+    }
+    .btn-resource {
+      display: block;
+      text-align: center;
+      padding: 12px 16px;
+      background-color: #1565c0;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .btn-resource:hover {
+      background-color: #0d47a1;
+    }
+    .btn-resource.alt {
+      background-color: #2e7d32;
+    }
+    .btn-resource.alt:hover {
+      background-color: #1b5e20;
+    }
+    .btn-resource.purple {
+      background-color: #6a1b9a;
+    }
+    .btn-resource.purple:hover {
+      background-color: #4a148c;
+    }
+  </style>
 </head>
 <body>
   <!-- TOP NAVIGATION BAR -->
@@ -25,80 +106,201 @@
   <main class="container">
     <!-- HERO SECTION -->
     <section class="hero reveal">
-      <h1>Week 11: Quantization-Aware Training & INT8 Model Deployment</h1>
-      <p>Date range: [2026-10-19 to 2026-10-25]</p>
+      <h1>Week 11: Quantization-Aware Training (QAT) & Dual-Branch Architecture Optimization</h1>
+      <p>Date range: [2026-07-11 to 2026-07-17]</p>
       <p class="lead">
-        This week focused on implementing Quantization-Aware Training (QAT) using PyTorch's <code>qnnpack</code> engine to optimize our dual-branch PCB defect detection model for lightweight edge deployment on the Raspberry Pi 5 CPU.
+        This week marks the completion of our INT8 Quantization-Aware Training (QAT) pipeline using PyTorch's <code>qnnpack</code> engine, technical verification of our 5-stream feature fusion network, and deployment optimization for real-time edge execution on the Raspberry Pi 5.
       </p>
     </section>
 
-    <!-- WEEKLY HIGHLIGHTS & KEY ACCOMPLISHMENTS -->
+    <!-- KEY HIGHLIGHTS -->
     <section class="section reveal">
-      <h2>Key Accomplishments</h2>
+      <h2>Milestones & Accomplishments Summary</h2>
       <div class="grid-cards">
         <div class="card">
-          <h3>⚡ Quantization-Aware Training (QAT)</h3>
-          <p>Integrated <code>QuantStub</code> and <code>DeQuantStub</code> into our model architecture, target-compiled with the ARM-optimized <code>qnnpack</code> backend. Reduced overall footprint by ~75% without accuracy degradation.</p>
+          <h3>⚡ 8-Bit Quantization (QAT)</h3>
+          <p>Integrated PyTorch <code>QuantStub</code>/<code>DeQuantStub</code> and <code>FloatFunctional</code> modules. Fine-tuned with <code>qnnpack</code> backends, yielding a <strong>~75% reduction in model size</strong> while retaining detection accuracy.</p>
         </div>
         <div class="card">
-          <h3>🧠 Architecture Verification</h3>
-          <p>Validated feature map aggregation across 5 total feature streams: 4 multi-scale FPN feature maps ($p_2, p_3, p_4, p_5$) fused with 17 handcrafted shallow edge features (Sobel, Laplacian, Sharpen, Local Variance).</p>
+          <h3>🧩 5-Stream Feature Analysis</h3>
+          <p>Formally defined network feature flow: <strong>4 FPN multi-scale feature maps</strong> ($p_2, p_3, p_4, p_5$) concatenated with a <strong>32-channel handcrafted edge embedding</strong>, forming a 160-channel prediction head.</p>
         </div>
         <div class="card">
-          <h3>🔍 Multi-Scale & Suppression Engine</h3>
-          <p>Deployed a 3-pass sliding window engine ($192\times192$, $256\times256$, $320\times320$) with automated drill-hole suppression (circularity filter $C > 0.68$ + point-in-polygon verification) to eliminate false alarms.</p>
+          <h3>🎯 3-Pass Multi-Scale Engine</h3>
+          <p>Deployed multi-scale inference across $192\times192$, $256\times256$, and $320\times320$ tile windows with automated <strong>Point-in-Polygon physical drill hole suppression</strong> to eliminate false positives inside vias.</p>
         </div>
       </div>
     </section>
 
-    <!-- TECHNICAL ARCHITECTURE SUMMARY -->
+    <!-- DETAILED ARCHITECTURE & FEATURE MAP BREAKDOWN -->
     <section class="section reveal">
-      <h2>Technical Highlights & Methodology</h2>
-      <div class="content-box">
-        <ul>
-          <li><strong>Dual-Branch Feature Fusion:</strong> Integrates a deep VGG16-BN backbone with 4 FPN pyramid levels concatenated alongside 32 shallow edge feature channels into a 160-channel prediction head.</li>
-          <li><strong>Optimization Loss Function:</strong> Combines Binary Cross-Entropy (BCE) with Dice Loss to effectively handle severe class imbalance ($<1\%$ foreground defect pixels):
-            <br>
-            <code>Loss = BCE(y, y_pred) + [1 - (2 * Intersection + ε) / (Sum(y) + Sum(y_pred) + ε)]</code>
-          </li>
-          <li><strong>Target Platform:</strong> Converted final INT8 model into TorchScript format (<code>deeppcb_vgg16_fpn_int8.pt</code>) for execution on Raspberry Pi 5 (4-thread ARM multi-processing).</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- GOOGLE COLAB LINKS & RESOURCES -->
-    <section class="section reveal">
-      <h2>Project Resources & Notebooks</h2>
-      <div class="resource-links">
-        <a href="https://colab.research.google.com/" target="_blank" class="btn-link">
-          🚀 Open Google Colab Training & QAT Notebook
-        </a>
-        <a href="https://colab.research.google.com/" target="_blank" class="btn-link secondary-btn">
-          🧪 Open Colab Testing & Inference Notebook
-        </a>
-        <a href="https://www.overleaf.com/" target="_blank" class="btn-link outline-btn">
-          📄 View LaTeX Technical Documentation (Overleaf)
-        </a>
-      </div>
-    </section>
-
-    <!-- INSPECTION RESULTS & GALLERY -->
-    <section class="section reveal">
-      <h2>Experimental Inspection Results</h2>
-      <p>Visual verification of 3-pass multi-scale inspection with INT8 Quantized TorchScript model:</p>
+      <h2>Deep Architecture & Feature Stream Breakdown</h2>
+      <p>Our defect detection architecture combines deep semantic feature extraction with high-frequency spatial edge filtering:</p>
       
-      <div class="gallery-grid">
-        <div class="gallery-item">
-          <img src="../assets/images/week11_original_pcb.jpg" alt="Original Test PCB" onerror="this.src='https://via.placeholder.com/400x300?text=Original+PCB+Image'">
-          <div class="caption">1. Input Raw Grayscale PCB</div>
+      <div class="tech-box">
+        <h3>1. Deep Semantic Branch (VGG16-BN + FPN) — 4 Feature Maps</h3>
+        <p>The backbone utilizes a <strong>VGG16-BN</strong> (Batch Normalized) network coupled with a Feature Pyramid Network (FPN) to construct 4 multi-scale semantic feature maps:</p>
+        <ul>
+          <li><strong>$p_5$ Feature Map:</strong> Derived from VGG Stage 5 (Deepest semantics, global context).</li>
+          <li><strong>$p_4$ Feature Map:</strong> Derived from VGG Stage 4.</li>
+          <li><strong>$p_3$ Feature Map:</strong> Derived from VGG Stage 3.</li>
+          <li><strong>$p_2$ Feature Map:</strong> Derived from VGG Stage 2 (Highest spatial resolution for fine defects).</li>
+        </ul>
+        <p><em>Note: VGG Stage 1 ($c_1$) is omitted from FPN lateral layers to maintain optimal computational throughput.</em></p>
+      </div>
+
+      <div class="tech-box">
+        <h3>2. Handcrafted Shallow Edge Branch — 17 Spatial Features</h3>
+        <p>Before spatial downsampling occurs, the input passes through a custom <code>ShallowFeatureExtractor17</code> layer computing 17 exact mathematical operations:</p>
+        
+        <div class="feature-list">
+          <div class="feature-item"><span class="badge-tag">f1</span> Raw Grayscale Intensity</div>
+          <div class="feature-item"><span class="badge-tag">f2</span> $3\times3$ Gaussian Blur</div>
+          <div class="feature-item"><span class="badge-tag">f3</span> $5\times5$ Gaussian Blur</div>
+          <div class="feature-item"><span class="badge-tag">f4</span> Sobel Horizontal ($X$) Edge</div>
+          <div class="feature-item"><span class="badge-tag">f5</span> Sobel Vertical ($Y$) Edge</div>
+          <div class="feature-item"><span class="badge-tag">f6</span> Sobel Gradient Magnitude ($\sqrt{f_4^2 + f_5^2}$)</div>
+          <div class="feature-item"><span class="badge-tag">f7</span> Fine $3\times3$ Laplacian</div>
+          <div class="feature-item"><span class="badge-tag">f8</span> Coarse Diagonal Laplacian</div>
+          <div class="feature-item"><span class="badge-tag">f9</span> Spatial Sharpening Kernel</div>
+          <div class="feature-item"><span class="badge-tag">f10</span> Min Pooling ($3\times3$ Erosion)</div>
+          <div class="feature-item"><span class="badge-tag">f11</span> Max Pooling ($3\times3$ Dilation)</div>
+          <div class="feature-item"><span class="badge-tag">f12</span> Morphological Gradient ($f_{11} - f_{10}$)</div>
+          <div class="feature-item"><span class="badge-tag">f13</span> Local Mean ($3\times3$)</div>
+          <div class="feature-item"><span class="badge-tag">f14</span> Local Mean ($7\times7$)</div>
+          <div class="feature-item"><span class="badge-tag">f15</span> Local Standard Deviation ($\sqrt{\text{Mean}(I^2) - \text{Mean}(I)^2}$)</div>
+          <div class="feature-item"><span class="badge-tag">f16</span> Difference of Gaussians (DoG: $f_2 - f_3$)</div>
+          <div class="feature-item"><span class="badge-tag">f17</span> Local Contrast ($|I - f_{14}|$)</div>
         </div>
-        <div class="gallery-item">
-          <img src="../assets/images/week11_int8_heatmap.png" alt="INT8 Heatmap Prediction" onerror="this.src='https://via.placeholder.com/400x300?text=3-Pass+INT8+Heatmap'">
-          <div class="caption">2. 3-Pass Aggregated Heatmap (&tau; = 0.38)</div>
+        <br>
+        <p>These 17 channels pass through a 2-stage convolutional block (17 $\rightarrow$ 32 $\rightarrow$ 32 channels) to produce the shallow embedding <code>s_embed</code>.</p>
+      </div>
+
+      <div class="tech-box">
+        <h3>3. Final Head Concatenation (160 Channels)</h3>
+        <p>The 4 FPN maps are concatenated and fused into a 128-channel block (<code>fpn_embed</code>). This is concatenated with the 32-channel shallow embedding (<code>s_embed</code>) to form a <strong>160-channel prediction head</strong>:</p>
+        <p><code>Final Input = Concat(FPN_Embed [128 ch], Shallow_Embed [32 ch]) = 160 Channels</code></p>
+      </div>
+    </section>
+
+    <!-- MATHEMATICAL FORMULATIONS -->
+    <section class="section reveal">
+      <h2>Mathematical Formulations & Loss Function</h2>
+      
+      <div class="math-card">
+        <h4>Combined Binary Cross-Entropy (BCE) & Dice Loss</h4>
+        <p>To overcome extreme class imbalance where microscopic PCB defects represent $<1\%$ of total surface pixels, we optimize the model using a hybrid loss function:</p>
+        <p style="text-align:center; font-family:serif; font-size:1.1em;">
+          $\mathcal{L}_{\text{total}} = \mathcal{L}_{\text{BCE}}(y, \hat{y}) + \left(1 - \frac{2 \sum y \hat{y} + \epsilon}{\sum y + \sum \hat{y} + \epsilon}\right)$
+        </p>
+        <p><small>Where $y$ represents ground truth pixel masks, $\hat{y}$ represents model probability predictions, and $\epsilon = 10^{-5}$ prevents division by zero.</small></p>
+      </div>
+
+      <div class="math-card">
+        <h4>Physical Drill Hole Circularity Metric</h4>
+        <p>Physical drill holes and vias are detected using grayscale intensity thresholding ($I > 180$) and filtered using the circularity ratio ($C$):</p>
+        <p style="text-align:center; font-family:serif; font-size:1.1em;">
+          $C = \frac{4 \pi \times \text{Area}}{\text{Perimeter}^2} > 0.68$
+        </p>
+        <p><small>Regions satisfying $10 < \text{Area} < 2000$ and $C > 0.68$ are tagged as valid physical drill holes. Predicted defect centroids inside these regions are automatically suppressed.</small></p>
+      </div>
+    </section>
+
+    <!-- PROJECT LINKS & RESOURCES -->
+    <section class="section reveal">
+      <h2>Interactive Project Resources & Links</h2>
+      <p>Access our live training notebooks, evaluation scripts, and LaTeX documentation:</p>
+      
+      <div class="resource-grid">
+        <a href="https://colab.research.google.com/" target="_blank" class="btn-resource">
+          ⚡ Colab QAT Training Notebook
+        </a>
+        <a href="https://colab.research.google.com/" target="_blank" class="btn-resource alt">
+          🧪 Colab INT8 Testing Engine
+        </a>
+        <a href="https://www.overleaf.com/" target="_blank" class="btn-resource purple">
+          📄 Overleaf LaTeX Documentation
+        </a>
+      </div>
+    </section>
+
+    <!-- CODE SNIPPETS & IMPLEMENTATION DETAILS -->
+    <section class="section reveal">
+      <h2>Implementation Source Code Snippets</h2>
+
+      <h3>1. Google Colab Quantization-Aware Training (QAT) & Export</h3>
+      <div class="code-container">
+<pre><code># --- QUANTIZATION-AWARE TRAINING SETUP ---
+import torch
+import torch.ao.quantization
+
+# Set target ARM backend for Raspberry Pi 5
+torch.backends.quantized.engine = 'qnnpack'
+
+# Instantiate and load pretrained floating point (FP32) weights
+model_qat = Quantized_VGG16_FPN_Model().to(device)
+model_qat.load_state_dict(torch.load("deeppcb_vgg16_fpn_best.pth", map_location=device), strict=False)
+
+# Prepare model for QAT fine-tuning
+model_qat.qconfig = torch.ao.quantization.get_default_qat_qconfig('qnnpack')
+model_qat.train()
+torch.ao.quantization.prepare_qat(model_qat, inplace=True)
+
+# Fine-tune for 5 epochs with low learning rate
+optimizer = torch.optim.AdamW(model_qat.parameters(), lr=1e-5, weight_decay=1e-4)
+# ... [Training Loop Execution] ...
+
+# Convert fake-quantized modules to true INT8 TorchScript
+model_qat.eval().to('cpu')
+quantized_int8_model = torch.ao.quantization.convert(model_qat, inplace=False)
+
+# Trace and save as optimized TorchScript binary
+dummy_input = torch.randn(1, 3, 256, 256)
+traced_model = torch.jit.trace(quantized_int8_model, dummy_input)
+torch.jit.save(traced_model, "deeppcb_vgg16_fpn_int8.pt")
+print("💾 Quantized INT8 TorchScript model successfully saved!")</code></pre>
+      </div>
+
+      <br>
+
+      <h3>2. Raspberry Pi 5 Inference & Drill Hole Suppression Script</h3>
+      <div class="code-container">
+<pre><code># --- RASPBERRY PI 5 INT8 INFERENCE ENGINE ---
+import cv2
+import numpy as np
+import torch
+
+torch.backends.quantized.engine = 'qnnpack'
+torch.set_num_threads(4) # Utilize all 4 ARM Cortex-A76 cores
+
+# Load quantized TorchScript model
+model = torch.jit.load("deeppcb_vgg16_fpn_int8.pt", map_location='cpu')
+model.eval()
+
+# 3-Pass Multi-Scale Tiles: 192, 256, 320 px
+tile_scales = [192, 256, 320]
+# Sensitivity Threshold: tau = 0.38
+# Hole Suppression: cv2.pointPolygonTest(hole_cnt, (cx, cy), False) >= 0</code></pre>
+      </div>
+    </section>
+
+    <!-- VISUAL EVALUATION GALLERY -->
+    <section class="section reveal">
+      <h2>Visual Inspection Results</h2>
+      <p>Experimental validation comparing input images, fused multi-scale probability heatmaps, and final suppressed detections:</p>
+      
+      <div class="gallery-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:15px; margin-top:15px;">
+        <div class="gallery-item" style="border:1px solid #ddd; padding:10px; border-radius:8px; text-align:center;">
+          <img src="../assets/images/week11_original_pcb.jpg" alt="Original Test PCB" style="width:100%; border-radius:4px;" onerror="this.src='https://via.placeholder.com/400x300?text=Raw+Input+PCB'">
+          <div class="caption" style="margin-top:8px; font-weight:600;">1. Raw Grayscale Test PCB</div>
         </div>
-        <div class="gallery-item">
-          <img src="../assets/images/week11_defect_detection.png" alt="Filtered Defect Detection" onerror="this.src='https://via.placeholder.com/400x300?text=Filtered+Detections'">
-          <div class="caption">3. Final Bounding Boxes & Hole Suppression</div>
+        <div class="gallery-item" style="border:1px solid #ddd; padding:10px; border-radius:8px; text-align:center;">
+          <img src="../assets/images/week11_int8_heatmap.png" alt="INT8 Heatmap Prediction" style="width:100%; border-radius:4px;" onerror="this.src='https://via.placeholder.com/400x300?text=3-Pass+INT8+Heatmap'">
+          <div class="caption" style="margin-top:8px; font-weight:600;">2. Fused Heatmap ($\tau = 0.38$)</div>
+        </div>
+        <div class="gallery-item" style="border:1px solid #ddd; padding:10px; border-radius:8px; text-align:center;">
+          <img src="../assets/images/week11_defect_detection.png" alt="Filtered Defect Detection" style="width:100%; border-radius:4px;" onerror="this.src='https://via.placeholder.com/400x300?text=Corrected+Detections'">
+          <div class="caption" style="margin-top:8px; font-weight:600;">3. Suppressed Bounding Boxes</div>
         </div>
       </div>
     </section>
@@ -107,9 +309,9 @@
     <section class="section reveal">
       <h2>Next Week Plan</h2>
       <ul>
-        <li>Deploy <code>deeppcb_vgg16_fpn_int8.pt</code> onto Raspberry Pi 5 hardware and perform real-time latency benchmarking (FPS, memory footprint, CPU load).</li>
-        <li>Compare FP32 baseline latency vs. INT8 QAT performance on the Raspberry Pi 5 CPU.</li>
-        <li>Finalize project documentation, supervisor review slides, and complete final submission checklist.</li>
+        <li>Deploy <code>deeppcb_vgg16_fpn_int8.pt</code> on the physical Raspberry Pi 5 hardware platform.</li>
+        <li>Perform benchmark comparisons: FPS, CPU temperature, RAM consumption, and latency comparing FP32 baseline vs. INT8 QAT execution.</li>
+        <li>Finalize project documentation, compile final report PDF via Overleaf, and prepare final supervisor slide deck.</li>
       </ul>
     </section>
   </main>
