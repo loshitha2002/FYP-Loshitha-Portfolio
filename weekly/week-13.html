@@ -8,8 +8,108 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Explicitly define text colors inside light containers to override global dark-mode text */
+    .tech-box {
+      background: #f8f9fa;
+      color: #1e293b !important;
+      border-left: 4px solid #1565c0;
+      padding: 1.2rem;
+      margin: 1.5rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+    .tech-box h3, .tech-box h4 {
+      color: #0f172a !important;
+      margin-top: 0;
+    }
+    .tech-box p, .tech-box li {
+      color: #334155 !important;
+    }
+    .math-card {
+      background: #ffffff;
+      color: #1e293b !important;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 1rem 1.5rem;
+      margin: 1rem 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    }
+    .math-card h4 {
+      color: #0f172a !important;
+      margin-top: 0;
+    }
+    .math-card p, .math-card div {
+      color: #334155 !important;
+    }
+    .feature-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .feature-item {
+      background: #ffffff;
+      color: #1e293b !important;
+      border: 1px solid #cbd5e1;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 0.9em;
+    }
+    .badge-tag {
+      background-color: #e3f2fd;
+      color: #1565c0 !important;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.85em;
+      margin-right: 6px;
+    }
+    .code-container {
+      background: #1e1e1e;
+      color: #d4d4d4 !important;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 0.85rem;
+      max-height: 400px;
+    }
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin: 1.5rem 0;
+    }
+    .btn-resource {
+      display: block;
+      text-align: center;
+      padding: 12px 16px;
+      background-color: #1565c0;
+      color: #ffffff !important;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .btn-resource:hover {
+      background-color: #0d47a1;
+    }
+    .gallery-item {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 10px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .gallery-item .caption {
+      margin-top: 8px;
+      font-weight: 600;
+      color: #1e293b !important;
+    }
+  </style>
 </head>
 <body>
+  <!-- TOP NAVIGATION BAR -->
   <div class="topbar">
     <div class="container nav">
       <a href="../index.html">G05 Deep-Vision Fusion</a>
@@ -22,18 +122,100 @@
   </div>
 
   <main class="container">
+    <!-- HERO SECTION -->
     <section class="hero reveal">
-      <h1>Week 13</h1>
-      <p>Date range: [YYYY-MM-DD to YYYY-MM-DD]</p>
+      <h1>Week 13: Hardware Assembly & Edge Deployment Optimization</h1>
+      <p>Date range: [2026-07-27 to 2026-07-31]</p>
+      <p class="lead">
+        This week, we successfully built and configured our physical hardware setup while actively researching and profiling optimization strategies. To achieve real-time PCB defect detection on a Raspberry Pi 5, we must radically speed up the inference pipeline while maintaining accuracy[cite: 1].
+      </p>
     </section>
 
+    <!-- KEY HIGHLIGHTS -->
+    <section class="section reveal">
+      <h2>Milestones & Accomplishments Summary</h2>
+      <div class="grid-cards">
+        <div class="card">
+          <h3>⚙️ Hardware Integration</h3>
+          <p>Successfully assembled the physical hardware for the Raspberry Pi 5 defect detection system, configuring the camera and mounting mechanisms for stable real-time PCB capture.</p>
+        </div>
+        <div class="card">
+          <h3>⏱️ Pipeline Profiling</h3>
+          <p>Identified that the current VGG16+FPN model with multi-scale sliding windows is far too slow on the Pi 5, taking approximately 10 minutes per image[cite: 1]. We determined that convolutional inference plus repeated windows consumes the vast majority of processing time[cite: 1].</p>
+        </div>
+        <div class="card">
+          <h3>✂️ Window Optimization</h3>
+          <p>Discovered that eliminating multi-scale inference and reducing tile overlap from 50% to 20% can potentially reduce runtime by a factor of 5-6[cite: 1].</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HARDWARE GALLERY -->
+    <section class="section reveal">
+      <h2>Hardware Setup & Assembly Visuals</h2>
+      <p>Below are the images of our finalized hardware configuration, showing the Raspberry Pi 5 integration and camera mounting:</p>
+      
+      <div class="gallery-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:15px; margin-top:15px;">
+        <div class="gallery-item">
+          <img src="../figures/w13_hardware_setup_1.jpg" alt="Hardware Setup Angle 1" style="width:100%; border-radius:4px;" onerror="this.src='https://via.placeholder.com/400x300?text=Hardware+Setup+1'">
+          <div class="caption">1. Top-Down Camera Mount</div>
+        </div>
+        <div class="gallery-item">
+          <img src="../figures/w13_hardware_setup_2.jpg" alt="Hardware Setup Angle 2" style="width:100%; border-radius:4px;" onerror="this.src='https://via.placeholder.com/400x300?text=Hardware+Setup+2'">
+          <div class="caption">2. Raspberry Pi 5 Assembly</div>
+        </div>
+        <div class="gallery-item">
+          <img src="../figures/w13_hardware_setup_3.jpg" alt="Hardware Setup Angle 3" style="width:100%; border-radius:4px;" onerror="this.src='https://via.placeholder.com/400x300?text=Hardware+Setup+3'">
+          <div class="caption">3. Full System Overview</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DETAILED DEPLOYMENT RESEARCH -->
+    <section class="section reveal">
+      <h2>Raspberry Pi 5 Edge Deployment Strategy</h2>
+      <p>Based on extensive profiling, we have structured our optimization roadmap around software frameworks, quantization, and architectural improvements:</p>
+      
+      <div class="tech-box">
+        <h3>Stage 1: Optimized Inference Frameworks & Quantization</h3>
+        <p>Running our models optimally requires migrating to an efficient runtime:</p>
+        <ul>
+          <li><strong>Frameworks:</strong> TFLite and Tencent NCNN are highly recommended for pure CPU inference on the Raspberry Pi[cite: 1].</li>
+          <li><strong>Quantization:</strong> Applying static INT8 quantization yields an approximately 4x smaller model and a 2-4x speedup for CNNs[cite: 1].</li>
+          <li><strong>NEON Acceleration:</strong> By using INT8, frameworks like NCNN and TFLite can exploit ARM NEON instructions, which can process 8-bit data with up to 8x raw throughput compared to 32-bit floats[cite: 1].</li>
+        </ul>
+      </div>
+
+      <div class="tech-box">
+        <h3>Stage 2: Lightweight Backbone Replacement</h3>
+        <p>The original VGG16 backbone requires ~16 GFLOPs for a 224&times;224 input, making it a critical bottleneck[cite: 1].</p>
+        <ul>
+          <li>Replacing VGG16 with a mobile-friendly encoder, such as MobileNetV3, drastically cuts compute requirements[cite: 1].</li>
+          <li>A MobileNetV3+FPN network is expected to run 5-10x faster than the VGG16+FPN model, with only a few percent drop in mAP if trained properly[cite: 1].</li>
+        </ul>
+      </div>
+
+      <div class="tech-box">
+        <h3>Stage 3: Edge AI Accelerators (Future Consideration)</h3>
+        <p>Specialized hardware can enormously speed up inference if CPU-only optimizations fall short[cite: 1].</p>
+        <ul>
+          <li><strong>Hailo-8L:</strong> The Raspberry Pi AI Kit features the Hailo-8L (13 TOPS), which can accelerate CNNs with reported throughputs 3-5x higher than the Pi CPU[cite: 1].</li>
+          <li><strong>Google Coral:</strong> The Coral Edge TPU is an alternative, though it lacks out-of-the-box support for FPN operations[cite: 1].</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- NEXT WEEK PLAN -->
     <section class="section reveal">
       <h2>Next Week Plan</h2>
       <ul>
-        <li>Deliver final presentation</li>
+        <li>Deliver final presentation.</li>
+        <li>Implement the single-scale, reduced-overlap (20%) sliding-window approach in our Python scripts.</li>
+        <li>Finalize our project demonstration files integrating the physical hardware setup.</li>
       </ul>
     </section>
   </main>
+
   <script src="../assets/js/main.js"></script>
 </body>
 </html>
